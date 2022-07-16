@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% load static %}
+
+
+{% block css_files %}
+<!-- We can only use 'static' in href if we have '{% load static %}' in our file. it works as url tag -->
+<link rel="stylesheet" href="{% static 'challenges/challenges.css' %}">
+<link rel="stylesheet" href="{% static 'challenges/includes/header.css' %}">
+{% endblock %}
+
+{% block page_title %} 
+All Challenges
+{% endblock %}
+
+{% block content %}
+
+{% include "challenges/includes/header.html"  %}
+
+<ul>
+  {% for month in months %}
+  <li>
+    <a href="{% url 'month-challenge' m=month %}">{{ month | title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
